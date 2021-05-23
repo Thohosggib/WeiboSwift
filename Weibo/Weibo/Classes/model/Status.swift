@@ -12,8 +12,9 @@ import UIKit
 private let WB_Home_Timeline_URL = "2/statuses/home_timeline.json"
 
 class Status: NSObject {
+
+    // 数据模型数据
     
-    // MARK: - 数据模型属性
     /// 微博创建时间
     var created_at: String?
     /// 微博ID
@@ -24,26 +25,35 @@ class Status: NSObject {
     var source: String?
     /// 配图数组
     var pic_urls: [[String: String]]?
+    /// 用户模型
+    var user: User?
     
     /// 类属性数组
-    static let properties = ["created_at", "id", "text", "source", "pic_urls"]
+    static let properties = ["created_at", "id", "text", "source", "pic_urls","user"]
     
-    ///  字典转模型函数
+    // 字典转模型函数
     init(dict: [String: AnyObject]) {
         super.init()
-        
         for key in Status.properties {
-            // 判断属性字典中的key对应的值是否存在
-            if dict[key] != nil {
-                // 如果存在，使用 kvc 设置数值，使用之前，需要调用 super.init 初始化对象属性
-                setValue(dict[key], forKey: key)
+            
+            if dict[key] == nil || key == "user" {
+                continue
             }
+            
+            // 如果存在，使用 KVC
+            setValue(dict[key], forKey: key)
+        }
+        
+        // 判断字典中是否包含 user
+        if let userDict = dict["user"] as? [String: AnyObject] {
+            
+            // 给 user 属性设置数值
+            user = User(dict: userDict)
         }
     }
     
     override var description: String {
         let dict = dictionaryWithValuesForKeys(Status.properties)
-        
         return "\(dict)"
     }
     
@@ -67,18 +77,15 @@ class Status: NSObject {
         }
     }
     
-    /// 使用传入的数组，完成网络模型转 Status 数组
-    private class func statuses(array: [[String: AnyObject]]) -> [Status] {
-        
-        // 定义可变数组
+    class func statuses(array: [[String: AnyObject]]) -> [Status] {
+        // 可变数组
         var arrayM = [Status]()
-        
-        // 遍历 array
+        // 遍历数组
         for dict in array {
-            arrayM.append(Status(dict: dict))
+        arrayM.append(Status(dict: dict))
         }
-        
-        return arrayM
+      return arrayM
     }
+
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5703EBBF1B3E966700D0DC30 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703EBBE1B3E966700D0DC30 /* NetworkTools.swift */; };
+		572CEDE01B4448380022BE0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572CEDDF1B4448380022BE0E /* User.swift */; };
 		57AEB6791B41AC32001A0982 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AEB6781B41AC32001A0982 /* UIBarButtonItem+Extension.swift */; };
 		57C020B91B3E3640003E89F4 /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 57C020B81B3E3640003E89F4 /* MainVCSettings.json */; };
 		57C020BB1B3E3699003E89F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C020BA1B3E3699003E89F4 /* MainViewController.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		268DBE48F42D60A5E02F0A81 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5703EBBE1B3E966700D0DC30 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
+		572CEDDF1B4448380022BE0E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		57AEB6781B41AC32001A0982 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		57C020B81B3E3640003E89F4 /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		57C020BA1B3E3699003E89F4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				57FFE83D1B3FC1E000556073 /* UserAccount.swift */,
 				57C4C5711B43DA6C00F02AD1 /* Status.swift */,
+				572CEDDF1B4448380022BE0E /* User.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				57AEB6791B41AC32001A0982 /* UIBarButtonItem+Extension.swift in Sources */,
 				57C4C5721B43DA6C00F02AD1 /* Status.swift in Sources */,
 				57FFE8441B3FDBD500556073 /* WelcomeViewController.swift in Sources */,
+				572CEDE01B4448380022BE0E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

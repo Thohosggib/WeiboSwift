@@ -10,12 +10,31 @@ import UIKit
 
 class HomeTableViewController: BaseTableViewController {
     
+    /// 表格绑定的微博数据数组
+    var statusesList: [Status]? {
+        didSet {
+        
+            // 刷新表格数据
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         visitorView?.setupViewInfo("visitordiscover_feed_image_house", message: "关注一些人，回这里看看有什么惊喜", isHome: true)
         
         setupNavigationBar()
+        
+        loadData()
+    }
+    
+    ///  加载微博数据
+    private func loadData() {
+        Status.loadStatus { (statuses) -> () in
+            print(statuses)
+            self.statusesList = statuses
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -71,5 +90,17 @@ class HomeTableViewController: BaseTableViewController {
     func showQRCode() {
         let sb = UIStoryboard(name: "QRCode", bundle: nil)
         presentViewController(sb.instantiateInitialViewController()!, animated: true, completion: nil)
+    }
+    
+    // MARK: -表格的数据源方法
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statusesList?.count ?? 0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! StatusCell
+        // 设置 cell
+        cell.status = statusesList![indexPath.row]
+        return cell
     }
 }

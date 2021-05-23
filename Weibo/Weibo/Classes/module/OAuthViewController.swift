@@ -81,10 +81,8 @@ class OAuthViewController: UIViewController, UIWebViewDelegate {
         
         // 判断是否包含 code＝
         if query.hasPrefix(codeStr) {
-            print("获取授权码")
             
-            // 返回的事字节数长度
-            //let code = (query as NSString).substringFromIndex((codeStr as NSString).length)
+            print("获取授权码")
             // 授权码
             let code = query.substringFromIndex(advance(codeStr.endIndex, 0))
             print("获取授权码\(code)")

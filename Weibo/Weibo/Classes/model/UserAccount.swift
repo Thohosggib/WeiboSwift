@@ -61,11 +61,9 @@ class UserAccount: NSObject, CustomDebugStringConvertible {
         }
     }
 
-    
     /// 打印对象信息
     override var description: String {
         let properties = ["access_token", "expires_in", "uid", "expiresDate"]
-        
         return "\(self.dictionaryWithValuesForKeys(properties))"
     }
     
