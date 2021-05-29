@@ -50,30 +50,29 @@ class StatusCell: UITableViewCell {
     
     // MARK: - 控件的懒加载
     lazy var iconView = UIImageView()
+    
     lazy var nameLabel: UILabel = {
-        
         let label = UILabel()
         label.font = UIFont.systemFontOfSize(14)
         label.textColor = UIColor.darkGrayColor()
-        
         return label
         }()
+    
     lazy var memberIconView: UIImageView = UIImageView(image: UIImage(named: "common_icon_membership_level1"))
+    
     lazy var vipIconView: UIImageView = UIImageView(image: UIImage(named: "avatar_grassroot"))
+    
     lazy var timeLabel:UILabel  = {
-        
         let label = UILabel()
         label.font = UIFont.systemFontOfSize(10)
         label.textColor = UIColor.orangeColor()
-        
         return label
         }()
+    
     lazy var sourceLabel:UILabel  = {
-        
         let label = UILabel()
         label.font = UIFont.systemFontOfSize(10)
         label.textColor = UIColor.darkGrayColor()
-        
         return label
         }()
     

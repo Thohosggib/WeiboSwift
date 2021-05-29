@@ -26,7 +26,14 @@ class HomeTableViewController: BaseTableViewController {
         
         setupNavigationBar()
         
+        // 如果用户没有登录，直接返回
+        if !userLogon {
+            return
+        }
+        
         loadData()
+        // 注册可重用 cell
+        tableView.registerClass(StatusCell.self, forCellReuseIdentifier: "Cell")
     }
     
     ///  加载微博数据
