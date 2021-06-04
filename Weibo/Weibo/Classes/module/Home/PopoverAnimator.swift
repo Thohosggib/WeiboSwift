@@ -43,7 +43,7 @@ class PopoverAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewCo
     // 动画时长
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         
-        return 0.8
+        return 0.2
     }
     
     ///  转场动画实现函数 － 一旦实现此函数，默认的动画实效，所有的动画由程序员提供

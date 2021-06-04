@@ -34,8 +34,18 @@ class HomeTableViewController: BaseTableViewController {
         loadData()
         // 注册可重用 cell
         tableView.registerClass(StatusCell.self, forCellReuseIdentifier: "Cell")
+        
+        // 行高
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+       override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 开启动画
+        visitorView?.startAnmiation()
+    }
     ///  加载微博数据
     private func loadData() {
         Status.loadStatus { (statuses) -> () in
@@ -43,17 +53,25 @@ class HomeTableViewController: BaseTableViewController {
             self.statusesList = statuses
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // 开启动画
-        visitorView?.startAnmiation()
+
+    // MARK: -表格的数据源方法
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statusesList?.count ?? 0
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! StatusCell
+        // 设置 cell
+        cell.status = statusesList![indexPath.row]
+        return cell
+    }
+
+    // MARK: -设置UI
     
     /// 动画转场代理
     let popoverAnimator = PopoverAnimator()
     
+    /// 转场控制器
     func titleButtonClicked() {
         let sb = UIStoryboard(name: "FriendGroup", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("FriendGroupSB")
@@ -63,13 +81,13 @@ class HomeTableViewController: BaseTableViewController {
         // 2. 设置视图的展现大小
         let x = (view.bounds.width - 200) * 0.5
         popoverAnimator.presentFrame = CGRectMake(x, 56, 200, 300)
-        // 3. 设置专场的模式 - 自定义转场动画
+        // 3. 设置转场的模式 - 自定义转场动画
         vc.modalPresentationStyle = UIModalPresentationStyle.Custom
         
         presentViewController(vc, animated: true, completion: nil)
     }
     
-    // 设置导航条
+    /// 设置导航条
     private func setupNavigationBar() {
         // 判断用户是否登录
         if sharedUserAccount == nil {
@@ -97,17 +115,5 @@ class HomeTableViewController: BaseTableViewController {
     func showQRCode() {
         let sb = UIStoryboard(name: "QRCode", bundle: nil)
         presentViewController(sb.instantiateInitialViewController()!, animated: true, completion: nil)
-    }
-    
-    // MARK: -表格的数据源方法
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return statusesList?.count ?? 0
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! StatusCell
-        // 设置 cell
-        cell.status = statusesList![indexPath.row]
-        return cell
     }
 }

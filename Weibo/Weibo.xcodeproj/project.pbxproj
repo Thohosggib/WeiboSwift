@@ -32,6 +32,7 @@
 		57E8A9411B3D49C300171933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E8A9401B3D49C300171933 /* Assets.xcassets */; };
 		57E8A94F1B3D49C300171933 /* WeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8A94E1B3D49C300171933 /* WeiboTests.swift */; };
 		57E8A95A1B3D49C300171933 /* WeiboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8A9591B3D49C300171933 /* WeiboUITests.swift */; };
+		57EEC0471B455BED009BA743 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEC0461B455BED009BA743 /* UILabel+Extension.swift */; };
 		57F9703D1B41A0D300E6423A /* PopoverAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9703C1B41A0D300E6423A /* PopoverAnimator.swift */; };
 		57FFE83E1B3FC1E000556073 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFE83D1B3FC1E000556073 /* UserAccount.swift */; };
 		57FFE8411B3FDAA300556073 /* NewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFE8401B3FDAA300556073 /* NewFeatureViewController.swift */; };
@@ -89,6 +90,7 @@
 		57E8A9551B3D49C300171933 /* WeiboUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E8A9591B3D49C300171933 /* WeiboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboUITests.swift; sourceTree = "<group>"; };
 		57E8A95B1B3D49C300171933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57EEC0461B455BED009BA743 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		57F9703C1B41A0D300E6423A /* PopoverAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverAnimator.swift; sourceTree = "<group>"; };
 		57FFE83D1B3FC1E000556073 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		57FFE8401B3FDAA300556073 /* NewFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeatureViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				5703EBBE1B3E966700D0DC30 /* NetworkTools.swift */,
 				57AEB6781B41AC32001A0982 /* UIBarButtonItem+Extension.swift */,
+				57EEC0461B455BED009BA743 /* UILabel+Extension.swift */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				57C4C5751B43DE9D00F02AD1 /* QRCodeMyCardViewController.swift in Sources */,
 				57C020BD1B3E36C3003E89F4 /* MainTabBar.swift in Sources */,
 				57FFE8411B3FDAA300556073 /* NewFeatureViewController.swift in Sources */,
+				57EEC0471B455BED009BA743 /* UILabel+Extension.swift in Sources */,
 				57E8A93A1B3D49C300171933 /* AppDelegate.swift in Sources */,
 				57F9703D1B41A0D300E6423A /* PopoverAnimator.swift in Sources */,
 				57C020CC1B3E4928003E89F4 /* OAuthViewController.swift in Sources */,

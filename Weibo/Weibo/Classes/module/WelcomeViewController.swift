@@ -61,7 +61,7 @@ class WelcomeViewController: UIViewController {
         // 在 cons 数组中查找 iconView 的底部约束
         bottomConstraint = iconView.ff_Constraint(cons, attribute: NSLayoutAttribute.Bottom)
         
-        messageLabel.ff_AlignVertical(ff_AlignType.BottomCenter, referView: iconView, size: nil, offset: CGPoint(x: 0, y: 8))
+        messageLabel.ff_AlignVertical(ff_AlignType.BottomCenter, referView: iconView, size: nil, offset: CGPoint(x: 0, y: 12))
     }
     
     lazy var iconView: UIImageView = {
