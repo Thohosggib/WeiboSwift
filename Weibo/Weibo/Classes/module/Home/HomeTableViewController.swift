@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeTableViewController: BaseTableViewController {
     
@@ -34,10 +35,11 @@ class HomeTableViewController: BaseTableViewController {
         loadData()
         // 注册可重用 cell
         tableView.registerClass(StatusCell.self, forCellReuseIdentifier: "Cell")
-        
-        // 行高
+        // 设置行高
         tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 300
+        // 取消分隔线
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
        override func viewDidAppear(animated: Bool) {
@@ -48,8 +50,16 @@ class HomeTableViewController: BaseTableViewController {
     }
     ///  加载微博数据
     private func loadData() {
-        Status.loadStatus { (statuses) -> () in
-            print(statuses)
+        Status.loadStatus { (statuses, error) -> () in
+            if error != nil {
+            SVProgressHUD.showInfoWithStatus("您的网络不给力")
+            }
+            
+            if statuses == nil {
+                print("没有数据")
+                return
+            }
+
             self.statusesList = statuses
         }
     }
