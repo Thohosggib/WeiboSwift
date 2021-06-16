@@ -61,7 +61,6 @@ class PopoverPresentationController: UIPresentationController {
         containerView?.insertSubview(dummyView, atIndex: 0)
         
         // 设置视图大小
-        //presentedView()?.frame = CGRectMake(100, 56, 180, 240)
         presentedView()?.frame = presentFrame
     }
 }

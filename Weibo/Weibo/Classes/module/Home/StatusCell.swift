@@ -11,7 +11,7 @@ import FFAutoLayout
 import SDWebImage
 
 /// 图片视图可重用标示符
-private let YTPictureCellReuseIdentifier = "YTPictureCellReuseIdentifier"
+private let HMPictureCellReuseIdentifier = "HMPictureCellReuseIdentifier"
 
 class StatusCell: UITableViewCell, UICollectionViewDataSource {
     
@@ -23,6 +23,13 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
     ///  微博数据模型
     var status: Status? {
         didSet {
+            // 设置头像
+            iconView.sd_setImageWithURL(status?.user?.profileURL)
+            // 设置认证图标
+            vipIconView.image = status?.user?.verifiedImage
+            // 设置会员图标
+            memberIconView.image = status?.user?.mbImage
+            
             nameLabel.text = status?.user?.name
             timeLabel.text = "刚刚"
             sourceLabel.text = "来自 微博"
@@ -41,6 +48,18 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
         }
     }
     
+    ///  计算行高
+    func rowHeight(status: Status) -> CGFloat {
+        // 给模型设置数值，调用 didSet 方法
+        self.status = status
+        
+        // 更新布局
+        layoutIfNeeded()
+        
+        // 返回行高 - 页脚视图的底边
+        return CGRectGetMaxY(footerView.frame)
+    }
+    
     // MARK: - 数据源方法
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return status?.imageURLs?.count ?? 0
@@ -48,7 +67,7 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(YTPictureCellReuseIdentifier, forIndexPath: indexPath) as! StatusPictureCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(HMPictureCellReuseIdentifier, forIndexPath: indexPath) as! StatusPictureCell
         
         // 调用此数据源方法，说明上面的数据行数有效，证明数组一定有内容
         cell.imageURL = status!.imageURLs![indexPath.item]
@@ -85,8 +104,6 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
             // key 就是 url 的完整字符串，sdwebimage缓存图片文件名是对 url 的完整字符串 md5
             let key = status.imageURLs![0].absoluteString
             let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
-            
-            print("单张图片 \(key) \(image.size)")
             
             // 2> 返回 image.size
             return (image.size, image.size)
@@ -160,9 +177,6 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
         
         // TODO
         //        pictureView.ff_AlignInner(ff_AlignType.BottomRight, referView: self, size: nil, offset: CGPoint(x: -8, y: -8))
-        
-        // 测试使用
-        iconView.image = UIImage(named: "avatar")
     }
     
     ///  准备配图视图图
@@ -173,7 +187,7 @@ class StatusCell: UITableViewCell, UICollectionViewDataSource {
         pictureView.dataSource = self
         
         // 3. 注册可重用cell
-        pictureView.registerClass(StatusPictureCell.self, forCellWithReuseIdentifier: YTPictureCellReuseIdentifier)
+        pictureView.registerClass(StatusPictureCell.self, forCellWithReuseIdentifier: HMPictureCellReuseIdentifier)
         // 4. 设置 layout
         pictureLayout.minimumInteritemSpacing = 10
         pictureLayout.minimumLineSpacing = 10
@@ -207,12 +221,18 @@ private class StatusPictureCell: UICollectionViewCell {
     /// 图像地址
     var imageURL: NSURL? {
         didSet {
+            // 如果本地有`缓存`，直接加载本地缓存的图片，如果没有，会自动下载
             iconView.sd_setImageWithURL(imageURL)
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        // 设置图片填充模式 - 等比例填充，需要裁切
+        iconView.contentMode = UIViewContentMode.ScaleAspectFill
+        // 两句需要配合使用
+        iconView.clipsToBounds = true
         
         addSubview(iconView)
         // 与 collectionView 完全一致

@@ -49,6 +49,7 @@ class WelcomeViewController: UIViewController {
         view = UIView()
         
         let backImageView = UIImageView(image: UIImage(named: "ad_background"))
+        //backImageView.frame = view.bounds
         view.addSubview(backImageView)
         view.addSubview(iconView)
         view.addSubview(messageLabel)
